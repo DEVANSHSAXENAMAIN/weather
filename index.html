@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Weather Web App</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for search icon -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash">
+        <img src="images/splash.png" alt="Splash" />
+        <h1>Weatherly</h1>
+    </div>
+    <!-- Main App Container -->
+    <div class="container glass-card hidden">
+        <!-- Settings Toggles -->
+        <div class="settings">
+            <button id="dark-toggle" title="Toggle Dark Mode"><span id="dark-icon">🌙</span></button>
+            <button id="sound-toggle" title="Toggle Sound"><span id="sound-icon">🔈</span></button>
+        </div>
+        <!-- Search Bar -->
+        <div class="search_box">
+            <input type="text" placeholder="Enter a city name" id="city" autocomplete="off" />
+            <button id="search"><ion-icon class="icon" name="search"></ion-icon></button>
+        </div>
+        <!-- Weather Display -->
+        <div id="show" class="weather-animate"></div>
+    </div>
+    <!-- Weather Sounds -->
+    <audio id="weather-audio" loop></audio>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+:root {
+    --orange: rgb(246, 99, 53);
+    --dark: #232946;
+    --border: rgba(255,255,255,0.18);
+    --background: rgba(255,255,255,0.13);
+    --glass: rgba(255,255,255, 0.20);
+    --shadow: rgba(3, 46, 87, 0.18);
+    --card-blur: blur(10px);
+    --transition: 0.4s cubic-bezier(.45,.05,.55,.95);
+    --background-clear: url("images/clear.jpg");
+    --background-clouds: url("images/clouds.jpg");
+    --background-rain: url("images/rain.jpg");
+    --background-snow: url("images/snow.jpg");
+    --background-thunderstorm: url("images/thunder.jpg");
+    --background-default: url("images/background.jpg");
+    /* Dark theme variables */
+    --dark-bg: #181920;
+    --dark-card: rgba(36,34,54,0.80);
+    --dark-border: rgba(255,255,255,0.09);
+    --dark-shadow: rgba(0,0,0,0.38);
+    --dark-text: #ededed;
+}
+
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+html {
+    font-size: 10px;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: var(--background-default) no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.7s;
+    overflow-x: hidden;
+}
+body.darkmode {
+    background: var(--dark-bg) !important;
+}
+body.darkmode .container {
+    background: var(--dark-card) !important;
+    box-shadow: 0 1.8rem 3.7rem var(--dark-shadow) !important;
+}
+body.darkmode,
+body.darkmode * {
+    color: var(--dark-text) !important;
+}
+body.darkmode .search_box,
+body.darkmode .temp_container div {
+    background: rgba(40, 40, 55, 0.21);
+}
+body.darkmode .search_box input,
+body.darkmode .search_box input::placeholder {
+    color: var(--dark-text) !important;
+}
+body.darkmode .search_box button {
+    background: var(--orange);
+}
+body.darkmode .temp_container .temp {
+    color: var(--orange) !important;
+}
+body.darkmode .temp_container .title,
+body.darkmode #show h2,
+body.darkmode .weather,
+body.darkmode .desc,
+body.darkmode #show h1 {
+    color: var(--dark-text) !important;
+}
+body.darkmode .error { color: #ffbaba !important; }
+
+/* Splash */
+#splash {
+    position: fixed;
+    z-index: 999;
+    background: var(--background-default) no-repeat center center fixed;
+    background-size: cover;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: splashIn 1.2s;
+}
+#splash img {
+    width: 90px;
+    margin-bottom: 1.5rem;
+    animation: rotate 1.5s infinite linear;
+}
+#splash h1 {
+    color: var(--dark);
+    font-size: 3.3rem;
+    letter-spacing: 0.18rem;
+    font-weight: 700;
+    text-shadow: 0 0.2rem 1rem var(--shadow);
+    margin-top: 1rem;
+}
+@keyframes splashIn {
+    0% { opacity: 0; transform: scale(0.8);}
+    100% { opacity: 1; transform: scale(1);}
+}
+@keyframes rotate {
+    100% { transform: rotate(360deg);}
+}
+
+/* Container */
+.container {
+    width: 38rem;
+    min-height: 40rem;
+    background: var(--glass);
+    backdrop-filter: var(--card-blur);
+    border-radius: 2.2rem;
+    box-shadow: 0 1.8rem 3.7rem var(--shadow);
+    padding: 2.5rem 2rem 3.5rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 3rem;
+    transition: background 0.7s;
+    opacity: 1;
+    animation: cardIn 1s;
+}
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(70px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.hidden { display: none; }
+
+/* Settings Toggle Styles */
+.settings {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+.settings button {
+    background: rgba(255,255,255,0.18);
+    border: none;
+    border-radius: 50%;
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    transition: background 0.3s;
+    outline: none;
+}
+.settings button:active {
+    background: var(--orange);
+    color: var(--dark);
+}
+.settings span {
+    pointer-events: none;
+    font-size: 1.8rem;
+    user-select: none;
+}
+
+/* Search Box */
+.search_box {
+    width: 100%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+    padding: 1rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1rem 2.5rem var(--shadow);
+    backdrop-filter: blur(0.4rem) saturate(180%);
+    transition: box-shadow var(--transition);
+}
+.search_box input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 0 1rem;
+    font-size: 1.7rem;
+    color: var(--dark);
+}
+.search_box input::placeholder {
+    color: var(--dark);
+}
+.search_box button {
+    border: 0;
+    border-radius: 50%;
+    background: var(--orange);
+    cursor: pointer;
+    width: 3.3rem;
+    height: 3.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition);
+}
+.search_box .icon {
+    width: 2rem;
+    height: 2rem; 
+    color: var(--dark); 
+}
+
+/* Weather Display */
+#show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 28rem;
+    text-align: center;
+    gap: 0.8rem;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: weatherFadeIn 1s forwards;
+    transition: opacity var(--transition), transform var(--transition);
+}
+.weather-animate.animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+#show h2 {
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    font-weight: 600;
+    font-size: 2.6rem;
+    margin: 2.5rem 0 0.7rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+#show h1 {
+    font-size: 6.2rem;
+    margin: 0.8rem 0 1.6rem 0;
+    font-weight: 500;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 0.8rem;
+    text-shadow: 0 0.4rem 2rem var(--shadow);
+    transition: color 0.5s;
+}
+.weather, .desc {
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+#show img {
+    margin: 1.2rem auto 0 auto;
+    width: 8rem;
+    filter: drop-shadow(0 1.8rem 3.7rem var(--shadow));
+}
+.temp_container {
+    display: flex;
+    justify-content: center;
+    margin: 2.8rem 0 3.5rem 0;
+    text-align: center;
+    gap: 2rem;
+}
+.temp_container div {
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.21);
+    border-radius: 1rem;
+}
+.temp_container div:first-child {
+    border-right: 0.1rem solid var(--border);
+}
+.temp_container .title {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.3rem;
+}
+.temp_container .temp {
+    font-weight: 600;
+    color: var(--orange);
+    font-size: 1.7rem;
+}
+.error {
+    margin: 4rem 0 5rem 0;
+    color: var(--dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    animation: shake 0.4s;
+}
+@keyframes shake {
+    10%, 90% {transform: translateX(-1px);}
+    20%, 80% {transform: translateX(2px);}
+    30%, 50%, 70% {transform: translateX(-4px);}
+    40%, 60% {transform: translateX(4px);}
+}
+@keyframes weatherFadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Weather-specific backgrounds */
+body.clear { background: var(--background-clear) no-repeat center center fixed; background-size: cover;}
+body.clouds { background: var(--background-clouds) no-repeat center center fixed; background-size: cover;}
+body.rain { background: var(--background-rain) no-repeat center center fixed; background-size: cover;}
+body.snow { background: var(--background-snow) no-repeat center center fixed; background-size: cover;}
+body.thunderstorm { background: var(--background-thunderstorm) no-repeat center center fixed; background-size: cover;}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        width: 95vw;
+        padding: 1.5rem 1rem 2.5rem 1rem;
+        margin: 0;
+    }
+    .search_box {
+        width: 100%;
+    }
+    #show h1 { font-size: 4.1rem; }
+    #show h2 { font-size: 2rem; }
+    .temp_container { gap: 1rem; }
+    #splash img { width: 60px; }
+}
+
+/* Overlay ready */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: rgba(255,255,255,0.13);
+    pointer-events: none;
+    transition: background 0.7s;
+    backdrop-filter: blur(2px);
+}

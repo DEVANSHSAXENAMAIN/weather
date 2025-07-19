@@ -346,3 +346,22 @@ body::before {
     transition: background 0.7s;
     backdrop-filter: blur(2px);
 }
+/* ...existing styles... */
+
+.developer-footer {
+    width: 100vw;
+    text-align: center;
+    padding: 2rem 0 1.5rem 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--orange);
+    letter-spacing: 0.08rem;
+    background: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* For dark mode, footer text should stand out */
+body.darkmode .developer-footer {
+    color: #ffd580;
+}
